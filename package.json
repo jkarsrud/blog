@@ -1,0 +1,16 @@
+{
+  "name": "blog",
+  "private": true,
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-shell": "^0.7.0",
+    "handlebars": "^2.0.0-alpha.4",
+    "hapi": "^6.0.2",
+    "metalsmith": "^0.8.0",
+    "metalsmith-drafts": "0.0.1",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-permalinks": "^0.3.2",
+    "metalsmith-templates": "^0.5.1"
+  }
+}
