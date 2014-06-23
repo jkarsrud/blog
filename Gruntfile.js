@@ -30,6 +30,10 @@ module.exports = function(grunt) {
 			}
 		},
 		watch: {
+			styles: {
+				files: ['src/styles/**/*.css'],
+				tasks: ['shell:build']
+			},
 			templates: {
 				files: ['templates/**/*.hbs'],
 				tasks: ['shell:build']
