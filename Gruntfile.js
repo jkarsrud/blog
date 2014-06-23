@@ -13,9 +13,9 @@ module.exports = function(grunt) {
 		},
 		{
 			method: 'GET',
-			path: '/content/{path*}',
+			path: '/{path*}',
 			handler: {
-				directory: { path: './build/content', listing: false, index: false}
+				directory: { path: './build/', listing: false, index: false}
 			}
 		}]);
 
