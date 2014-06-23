@@ -25,22 +25,40 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		shell: {
-			build: {
-				command: 'node build.js'
-			}
+				dev: {
+					command: 'node build.js development'
+				},
+				dist: {
+					command: 'node build.js production'
+				}
 		},
 		watch: {
 			styles: {
 				files: ['src/styles/**/*.css'],
-				tasks: ['shell:build']
+				dev: {
+					tasks: ['shell:dev']
+				},
+				dist: {
+					tasks: ['shell:dist']
+				}
 			},
 			templates: {
 				files: ['templates/**/*.hbs'],
-				tasks: ['shell:build']
+				dev: {
+					tasks: ['shell:dev']
+				},
+				dist: {
+					tasks: ['shell:dist']
+				}
 			},
 			content: {
 				files: ['src/**/*.md'],
-				tasks: ['shell:build']
+				dev: {
+					tasks: ['shell:dev']
+				},
+				dist: {
+					tasks: ['shell:dist']
+				}
 			}
 		}
 	});
@@ -48,6 +66,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['shell', 'watch']);
+	grunt.registerTask('build', ['shell:dev', 'watch']);
+	grunt.registerTask('build:dist', ['shell:dist']);
+
 	grunt.registerTask('server', ['shell', 'hapiserver', 'watch']);
 }
