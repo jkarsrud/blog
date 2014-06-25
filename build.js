@@ -12,12 +12,13 @@ Handlebars.registerPartial('header', fs.readFileSync(__dirname + '/templates/par
 Handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/templates/partials/footer.hbs').toString());
 Handlebars.registerPartial('navbar', fs.readFileSync(__dirname + '/templates/partials/navbar.hbs').toString());
 
-var configPath = 'config/' + process.argv[2] + '.json';
+var env = process.argv[2] || 'development';
+var configPath = 'config/' + env + '.json';
 
 Metalsmith(__dirname)
 .use(permalinks())
 .use(metadata({
-	env: configPath
+  env: configPath
 }))
 .use(markdown({
   smartypants: true,
