@@ -7,6 +7,7 @@ var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
 var permalinks = require('metalsmith-permalinks');
 var metadata = require('metalsmith-metadata');
+var collections = require('metalsmith-collections');
 
 Handlebars.registerPartial('header', fs.readFileSync(__dirname + '/templates/partials/header.hbs').toString());
 Handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/templates/partials/footer.hbs').toString());
@@ -16,15 +17,28 @@ var env = process.argv[2] || 'development';
 var configPath = 'config/' + env + '.json';
 
 Metalsmith(__dirname)
-.use(permalinks())
+.use(collections({
+  posts: {
+    pattern: 'content/posts/*.md',
+    sortBy: 'date',
+    reverse: true
+  }
+}))
+.use(permalinks({
+  pattern: ':collection/:title'
+}))
 .use(metadata({
   env: configPath
 }))
 .use(markdown({
   smartypants: true,
   gfm: true,
-  tables: true
+  tables: true,
+  highlight: function(code) {
+    return require('highlight.js').highlightAuto(code).value;
+  }
 }))
+
 .use(templates('handlebars'))
 .build(function(err) {
   if(err) throw err;
