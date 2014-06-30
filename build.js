@@ -17,18 +17,15 @@ var env = process.argv[2] || 'development';
 var configPath = 'config/' + env + '.json';
 
 Metalsmith(__dirname)
+.use(metadata({
+  env: configPath
+}))
 .use(collections({
   posts: {
     pattern: 'content/posts/*.md',
     sortBy: 'date',
     reverse: true
   }
-}))
-.use(permalinks({
-  pattern: ':collection/:title'
-}))
-.use(metadata({
-  env: configPath
 }))
 .use(markdown({
   smartypants: true,
@@ -38,7 +35,9 @@ Metalsmith(__dirname)
     return require('highlight.js').highlightAuto(code).value;
   }
 }))
-
+.use(permalinks({
+  pattern: ':collection/:title/'
+}))
 .use(templates('handlebars'))
 .build(function(err) {
   if(err) throw err;
