@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- '0.10'
+before_install:
+- npm install -g grunt-cli
+script:
+- grunt deploy
+branches:
+  only:
+  - master
+env:
+  global:
+    secure: hrN/BjVXQV0Kk1XOVuY5aY3tlAFAlwkUg8KcR8erbxuPhMEG8OupythfJvzKhOFmNVxA6HmK+3XKTN6tFVxGIe8ITTaKZymWmHqW2jfg2LRZA+tZKqxSPW/SC2epdxppfYHRLP843CBLCnemevkckkZoSzy40moM74QidDDyre4=
