@@ -69,6 +69,22 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-gh-pages');
 
+  // get a formatted commit message to review changes from the commit log
+  // github will turn some of these into clickable links
+  function getDeployMessage() {
+    var ret = '\n\n';
+    if (process.env.TRAVIS !== 'true') {
+      ret += 'missing env vars for travis-ci';
+      return ret;
+    }
+    ret += 'branch:       ' + process.env.TRAVIS_BRANCH + '\n';
+    ret += 'SHA:          ' + process.env.TRAVIS_COMMIT + '\n';
+    ret += 'range SHA:    ' + process.env.TRAVIS_COMMIT_RANGE + '\n';
+    ret += 'build id:     ' + process.env.TRAVIS_BUILD_ID  + '\n';
+    ret += 'build number: ' + process.env.TRAVIS_BUILD_NUMBER + '\n';
+    return ret;
+  }
+
   grunt.registerTask('check-deploy', function() {
     // need this
     this.requires(['build']);
