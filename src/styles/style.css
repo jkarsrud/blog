@@ -1,13 +1,3 @@
-body {
-	background: #333;
-	color: #eee;
-}
-
-.navbar.navbar-default {
-	background: transparent;
-	border: none;
-}
-
 #page-wrapper {
 	margin-top: 20px;
 }
