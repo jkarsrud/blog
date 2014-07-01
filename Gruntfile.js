@@ -32,6 +32,12 @@ module.exports = function(grunt) {
         command: 'node build.js production'
       }
     },
+    copy: {
+      main: {
+        src: 'CNAME',
+        dest: 'build/CNAME'
+      }
+    },
     'gh-pages': {
       options: {
         branch: 'gh-pages',
@@ -67,6 +73,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-gh-pages');
 
   // get a formatted commit message to review changes from the commit log
@@ -104,7 +111,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', 'Building blog with Metalsmith', [
-    'shell:dist'
+    'shell:dist',
+    'copy'
   ]);
 
   grunt.registerTask('deploy', 'Publish from Travis', [
