@@ -54,7 +54,7 @@ module.exports = function(grunt) {
         options: {
           user: {
             name: 'travis-ci',
-            email: 'jkarsrud@gmail.com'
+            email: 'jesper.karsrud@gmail.com'
           },
           repo: 'https://' + process.env.GH_TOKEN + '@github.com/jkarsrud/blog.git',
           message: 'Publish gh-pages (auto)' + getDeployMessage(),
