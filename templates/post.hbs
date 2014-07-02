@@ -1,9 +1,7 @@
 {{> header}}
 <div class="col-lg-8">
 	<h1>{{title}}</h1>
-  <p class="small">
-    Posted on: <time>{{#moment format="DD.MM.YYYY"}}{{date}}{{/moment}}</time>
-  </p>
+  <p class="small">Posted on: <time>{{moment date format="DD.MM.YYYY hh:mm"}}</time></p>
 	{{{ contents }}}
 </div>
 <div class="col-lg-4">

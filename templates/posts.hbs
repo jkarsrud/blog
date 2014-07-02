@@ -5,9 +5,7 @@
     {{#each collections.posts}}
     <article>
       <h2><a href="{{this.path}}">{{this.title}}</a></h2>
-      <p class="small">
-        Posted on: <time>{{#moment format="DD.MM.YYYY"}}{{this.date}}{{/moment}}</time>
-      </p>
+      <p class="small">Posted on: <time>{{moment this.date format="DD.MM.YYYY hh:mm"}}</time></p>
       {{{this.contents}}}
     </article>
     {{/each}}
