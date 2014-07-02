@@ -9,6 +9,9 @@ var templates = require('metalsmith-templates');
 var permalinks = require('metalsmith-permalinks');
 var metadata = require('metalsmith-metadata');
 var collections = require('metalsmith-collections');
+var drafts = require('metalsmith-drafts');
+
+var strippedExceprts = require('./excerpts');
 
 Handlebars.registerPartial('header', fs.readFileSync(__dirname + '/templates/partials/header.hbs').toString());
 Handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/templates/partials/footer.hbs').toString());
@@ -23,6 +26,7 @@ Metalsmith(__dirname)
 .use(metadata({
   env: configPath
 }))
+.use(drafts())
 .use(collections({
   posts: {
     pattern: 'content/posts/*.md',
@@ -37,6 +41,9 @@ Metalsmith(__dirname)
   highlight: function(code) {
     return require('highlight.js').highlightAuto(code).value;
   }
+}))
+.use(strippedExceprts({
+  strip: true
 }))
 .use(permalinks({
   pattern: ':collection/:title/'
