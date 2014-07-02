@@ -1,12 +1,12 @@
 {{> header}}
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-md-12">
   {{{contents}}}
     {{#each collections.posts}}
     <article>
       <h2><a href="{{this.path}}">{{this.title}}</a></h2>
       <p class="small">Posted on: <time>{{moment this.date format="DD.MM.YYYY hh:mm"}}</time></p>
-      {{{this.contents}}}
+      <p class="lead">{{{this.excerpt}}}</p>
     </article>
     {{/each}}
   </div>
