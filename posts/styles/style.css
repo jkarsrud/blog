@@ -1,3 +1,59 @@
-body {
-  padding-top: 70px;
+html, body {
+  background: linear-gradient(#39CCCC, #0074D9 100%);
+}
+
+#page {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1170px;
+  background: none;
+}
+
+#secondary nav {
+  display: none;
+}
+
+#secondary {
+  color: #fff;
+  padding: 0;
+  background: #001F3F;
+}
+
+#secondary header {
+  border-bottom: 1px solid #0074D9;
+  text-align: center;
+}
+
+.masthead .site-title {
+  font-family: ;
+  margin: 0;
+  padding: 15px 0;
+}
+
+#primary {
+  background: #fff;
+  padding: 0;
+}
+
+.post {
+  padding: 50px;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (min-width: 1200px) {
+  #page {
+    background: #fff;
+  }
+  #page:before {
+    content: "";
+    background: #001F3F;
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 25%;
+  }
+
+  #secondary nav {
+    display: block;
+  }
 }
