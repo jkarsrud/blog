@@ -1,27 +1,14 @@
 {{> header}}
-<div class="jumbotron">
-  <h1>{{title}}</h1>
-  {{{contents}}}
-  <p><a class="btn btn-primary btn-lg" href="/posts">See the posts</a></p>
-</div>
-<div class="row">
-  <section class="col-md-8">
-  {{#each collections.posts}}
-  <article>
+<section id="primary" class="col-lg-9">
+{{#each collections.posts}}
+  <article class="post">
     <h2><a href="{{this.path}}">{{this.title}}</a></h2>
     <p class="small">Posted on: <time>{{moment this.date format="DD.MM.YYYY hh:mm"}}</time></p>
+    {{#if this.image}}
+      <img src="{{this.image}}" />
+    {{/if}}
     <p class="lead">{{{this.excerpt}}}</p>
   </article>
-  {{/each}}
-  </section>
-  <aside class="col-md-4">
-    <div class="well">
-      <p>Some about stuff right here or something of that nature</p>
-      <ul>
-        <li><a href="http://github.com/jkarsrud">GitHub</a></li>
-        <li><a href="http://twitter.com/beyondsanity">Twitter</a></li>
-      </ul>
-    </div>
-  </aside>
-</div>
+{{/each}}
+</section>
 {{> footer}}

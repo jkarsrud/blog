@@ -10,6 +10,7 @@ var permalinks = require('metalsmith-permalinks');
 var metadata = require('metalsmith-metadata');
 var collections = require('metalsmith-collections');
 var drafts = require('metalsmith-drafts');
+var filemetadata = require('metalsmith-filemetadata');
 
 var strippedExceprts = require('./excerpts');
 
@@ -24,12 +25,19 @@ var configPath = 'config/' + env + '.json';
 
 Metalsmith(__dirname)
 .use(metadata({
-  env: configPath
+  env: configPath,
+  site: 'config/site.json'
 }))
 .use(drafts())
+.use(filemetadata([
+  {pattern: 'posts/*.md', metadata: {
+    type: 'post',
+    template: 'post.hbs'
+  }}
+]))
 .use(collections({
   posts: {
-    pattern: 'content/posts/*.md',
+    pattern: 'posts/*.md',
     sortBy: 'date',
     reverse: true
   }

@@ -1,7 +1,6 @@
 ---
 title: "Blogging with Metalsmith"
 date: 2014-06-22
-template: post.hbs
 ---
 
 This is a blog post!

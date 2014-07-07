@@ -18,16 +18,18 @@ function plugin(options){
       var $ = cheerio.load(data.contents.toString());
       var p = $('p').first();
 
-      var excerpt;
+        var excerpt;
 
-      if(opts.strip){
-        excerpt = p.html();
-      }
-      else{
-        excerpt = $.html(p);
-      }
+        if(opts.strip){
+          excerpt = p.html();
+        }
+        else{
+          excerpt = $.html(p);
+        }
 
-      data.excerpt = excerpt.trim();
+        if(excerpt != null) {
+          data.excerpt = excerpt.trim();
+        }
     });
   };
 }

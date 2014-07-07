@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<base href="{{env.baseUrl}}">
 	<title>{{ title }}</title>
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/github.css">
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-{{> navbar}}
+<div id="page">
 <div class="container">
+  <div class="row">
+    <div id="secondary" class="col-lg-3">
+      <header class="masthead">
+        <h1 class="site-title">{{ site.title }}</h1>
+        <p class="site-tagline">{{ site.tagline }}</p>
+      </header>
+      {{> navbar}}
+      <p>Some about stuff right here or something of that nature</p>
+      <ul>
+        <li><a href="http://github.com/jkarsrud">GitHub</a></li>
+        <li><a href="http://twitter.com/beyondsanity">Twitter</a></li>
+      </ul>
+    </div>

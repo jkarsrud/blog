@@ -34,8 +34,10 @@ module.exports = function(grunt) {
     },
     copy: {
       main: {
-        src: 'CNAME',
-        dest: 'build/CNAME'
+        files: [
+          { expand: false, src: 'CNAME', dest: 'build/CNAME' },
+          { expand: true, src: ['media/**/*'], dest: 'build/', flatten: false, filter: 'isFile' }
+        ]
       }
     },
     'gh-pages': {
@@ -57,7 +59,7 @@ module.exports = function(grunt) {
             email: 'jesper.karsrud@gmail.com'
           },
           repo: 'https://' + process.env.GH_TOKEN + '@github.com/jkarsrud/blog.git',
-          message: 'Publish gh-pages (auto)' + getDeployMessage(),
+          message: 'Publish from Travis' + getDeployMessage(),
           silent: true
         },
         src: ['**/*']
@@ -66,7 +68,7 @@ module.exports = function(grunt) {
     watch: {
       dev: {
         files: ['src/styles/**/*.css', 'templates/**/*.hbs', 'src/**/*.md'],
-        tasks: ['shell:dev']
+        tasks: ['shell:dev', 'copy']
       }
     }
   });
@@ -120,5 +122,5 @@ module.exports = function(grunt) {
     'check-deploy'
   ]);
 
-  grunt.registerTask('server', ['shell:dev', 'hapiserver', 'watch']);
+  grunt.registerTask('server', ['shell:dev', 'copy', 'hapiserver', 'watch']);
 }

@@ -1,7 +1,7 @@
 ---
 title: "The second post is here"
-template: post.hbs
 date: 2014-07-01
+image: /media/images/placeholder.jpg
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere explicabo veniam incidunt obcaecati aliquid recusandae quia harum dolor laboriosam, voluptatum quisquam! Laboriosam, earum beatae quam sed architecto, cupiditate eligendi nisi.
