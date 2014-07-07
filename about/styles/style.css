@@ -16,7 +16,7 @@ html, body {
 #secondary {
   color: #fff;
   padding: 0;
-  background: #001F3F;
+  background: #222;
 }
 
 #secondary header {
@@ -25,7 +25,6 @@ html, body {
 }
 
 .masthead .site-title {
-  font-family: ;
   margin: 0;
   padding: 15px 0;
 }
@@ -46,7 +45,7 @@ html, body {
   }
   #page:before {
     content: "";
-    background: #001F3F;
+    background: #222;
     display: block;
     height: 100%;
     position: absolute;
