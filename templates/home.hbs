@@ -2,10 +2,12 @@
 <section id="primary" class="col-lg-9">
 {{#each collections.posts}}
   <article class="post">
-    <h2><a href="{{this.path}}">{{this.title}}</a></h2>
-    <p class="small">Posted on: <time>{{moment this.date format="DD.MM.YYYY hh:mm"}}</time></p>
+    <header>
+      <h2 class="post-title"><a href="{{this.path}}">{{this.title}}</a></h2>
+      <p class="post-meta small">Posted on: <time>{{moment this.date format="DD.MM.YYYY"}}</time></p>
+    </header>
     {{#if this.image}}
-      <img src="{{this.image}}" />
+      <img src="{{this.image}}" class="img-responsive img-thumbnail"/>
     {{/if}}
     <p class="lead">{{{this.excerpt}}}</p>
   </article>
