@@ -36,12 +36,12 @@
   <p class="small">Posted on: <time>22.06.2014 12:00</time></p>
 	<p>This is a blog post!</p>
 <p>It has fenced code blocks in it!</p>
-<pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+<pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-comment">// This is a comment inside a closure, but how does it look?</span>
   <span class="hljs-keyword">this</span>.prop = <span class="hljs-string">"propertyvalue"</span>;
   <span class="hljs-keyword">this</span>.prop2 = <span class="hljs-literal">true</span>;
 
-  <span class="hljs-keyword">this</span>.method= <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">this</span>.method= <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-keyword">var</span> something = <span class="hljs-keyword">this</span>.prop2 ? <span class="hljs-string">"val1"</span> : <span class="hljs-string">"val2"</span>;
   }.bind(<span class="hljs-keyword">this</span>);
 })();

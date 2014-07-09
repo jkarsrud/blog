@@ -1,5 +1,6 @@
 html, body {
-  background: linear-gradient(#39CCCC, #0074D9 100%);
+  background: url(/media/bokeh-bg.png) no-repeat center center;
+  background-size: cover;
 }
 
 #page {
@@ -14,14 +15,19 @@ html, body {
 }
 
 #secondary {
-  color: #fff;
+  color: #ddd;
   padding: 0;
   background: #222;
 }
 
 #secondary header {
-  border-bottom: 1px solid #0074D9;
+  border-bottom: 1px solid #000;
   text-align: center;
+}
+
+#secondary header ~ * {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #333;
 }
 
 .masthead .site-title {
