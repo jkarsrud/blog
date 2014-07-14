@@ -32,11 +32,27 @@ module.exports = function(grunt) {
         command: 'node build.js production'
       }
     },
+    sass: {
+      dist: {
+        options: {
+          outputStyle: 'compressed'
+        },
+        files: {
+          'styles/style.scss': 'tmp/styles/style.css'
+        }
+      },
+      dev: {
+        files: {
+          'styles/style.scss': 'tmp/styles/style.css'
+        }
+      }
+    },
     copy: {
       main: {
         files: [
           { expand: false, src: 'CNAME', dest: 'build/CNAME' },
-          { expand: true, src: ['media/**/*'], dest: 'build/', flatten: false, filter: 'isFile' }
+          { expand: true, src: ['media/**/*'], dest: 'build/', flatten: false, filter: 'isFile' },
+          { expand: true, src: ['tmp/styles/*.css'], dest: 'build/', flatten: false, filter: 'isFile' }
         ]
       }
     },
@@ -66,8 +82,16 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      dev: {
-        files: ['src/styles/**/*.css', 'templates/**/*.hbs', 'src/**/*.md'],
+      sass: {
+        files: ['styles/**/*.scss'],
+        tasks: ['sass', 'copy']
+      },
+      templates: {
+        files: ['templates/**/*.hbs'],
+        tasks: ['shell:dev', 'copy']
+      },
+      content: {
+        files: ['src/**/*.md'],
         tasks: ['shell:dev', 'copy']
       }
     }
@@ -77,6 +101,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-gh-pages');
+  grunt.loadNpmTasks('grunt-sass');
 
   // get a formatted commit message to review changes from the commit log
   // github will turn some of these into clickable links
@@ -114,6 +139,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', 'Building blog with Metalsmith', [
     'shell:dist',
+    'sass:dist',
     'copy'
   ]);
 
@@ -122,5 +148,5 @@ module.exports = function(grunt) {
     'check-deploy'
   ]);
 
-  grunt.registerTask('server', ['shell:dev', 'copy', 'hapiserver', 'watch']);
+  grunt.registerTask('server', ['shell:dev', 'sass:dev', 'copy', 'hapiserver', 'watch']);
 }
