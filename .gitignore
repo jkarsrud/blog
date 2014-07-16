@@ -28,3 +28,4 @@ node_modules
 
 # Built files
 build
+tmp/

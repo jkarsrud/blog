@@ -1,27 +1,5 @@
 module.exports = function(grunt) {
-  grunt.registerTask('hapiserver', function() {
-    var Hapi = require('hapi');
-    var server = Hapi.createServer('localhost', 8000);
-
-    server.route([
-    {
-      method: 'GET',
-      path: '/',
-      handler: {
-        file: { path: './build/index.html'}
-      }
-    },
-    {
-      method: 'GET',
-      path: '/{path*}',
-      handler: {
-        directory: { path: './build/', listing: false, index: true}
-      }
-    }]);
-
-    server.start();
-    grunt.log.ok('Hapi dev server started on %s', server.info.uri);
-  });
+  grunt.loadTasks('tasks');
 
   grunt.initConfig({
     shell: {
@@ -37,14 +15,22 @@ module.exports = function(grunt) {
         options: {
           outputStyle: 'compressed'
         },
-        files: {
-          'styles/style.scss': 'tmp/styles/style.css'
-        }
+        files: [{
+          expand: true,
+          cwd: 'styles',
+          src: ['**/*.scss'],
+          dest: 'tmp/result/assets/styles/',
+          ext: '.css'
+        }]
       },
       dev: {
-        files: {
-          'styles/style.scss': 'tmp/styles/style.css'
-        }
+        files: [{
+          expand: true,
+          cwd: 'styles',
+          src: ['**/*.scss'],
+          dest: 'tmp/result/assets/styles/',
+          ext: '.css'
+        }]
       }
     },
     copy: {
@@ -52,8 +38,28 @@ module.exports = function(grunt) {
         files: [
           { expand: false, src: 'CNAME', dest: 'build/CNAME' },
           { expand: true, src: ['media/**/*'], dest: 'build/', flatten: false, filter: 'isFile' },
-          { expand: true, src: ['tmp/styles/*.css'], dest: 'build/', flatten: false, filter: 'isFile' }
+          { expand: true, src: ['tmp/result/assets/styles/*.css'], dest: 'build/', flatten: true, filter: 'isFile' }
         ]
+      }
+    },
+    clean: {
+      dev: ['tmp']
+    },
+    jshint: {
+      options: {
+        force: true
+      },
+      plugins: {
+        src: ['plugins/*.js']
+      },
+      tooling: {
+        src: [
+          'Gruntfile.js',
+          'tasks/**/*.js'
+        ]
+      },
+      build: {
+        src: ['build.js']
       }
     },
     'gh-pages': {
@@ -93,6 +99,10 @@ module.exports = function(grunt) {
       content: {
         files: ['src/**/*.md'],
         tasks: ['shell:dev', 'copy']
+      },
+      js: {
+        files: ['plugins/*.js', 'build.js', 'Gruntfile.js'],
+        tasks: ['jshint']
       }
     }
   });
@@ -102,6 +112,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-gh-pages');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // get a formatted commit message to review changes from the commit log
   // github will turn some of these into clickable links
@@ -124,9 +136,9 @@ module.exports = function(grunt) {
     this.requires(['build']);
 
     // only deploy under these conditions
-    if (process.env.TRAVIS === 'true'
-      && process.env.TRAVIS_SECURE_ENV_VARS === 'true'
-      && process.env.TRAVIS_PULL_REQUEST === 'false'
+    if (process.env.TRAVIS === 'true' &&
+      process.env.TRAVIS_SECURE_ENV_VARS === 'true' &&
+      process.env.TRAVIS_PULL_REQUEST === 'false'
     ) {
       grunt.log.writeln('executing deployment');
       // queue deploy
@@ -138,6 +150,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', 'Building blog with Metalsmith', [
+    'clean',
     'shell:dist',
     'sass:dist',
     'copy'
@@ -148,5 +161,5 @@ module.exports = function(grunt) {
     'check-deploy'
   ]);
 
-  grunt.registerTask('server', ['shell:dev', 'sass:dev', 'copy', 'hapiserver', 'watch']);
-}
+  grunt.registerTask('server', ['clean', 'shell:dev', 'sass:dev', 'copy', 'jshint', 'hapiserver', 'watch']);
+};
