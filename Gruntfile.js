@@ -19,7 +19,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'styles',
           src: ['**/*.scss'],
-          dest: 'tmp/result/assets/styles/',
+          dest: 'build/',
           ext: '.css'
         }]
       },
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'styles',
           src: ['**/*.scss'],
-          dest: 'tmp/result/assets/styles/',
+          dest: 'build/',
           ext: '.css'
         }]
       }
@@ -37,13 +37,9 @@ module.exports = function(grunt) {
       main: {
         files: [
           { expand: false, src: 'CNAME', dest: 'build/CNAME' },
-          { expand: true, src: ['media/**/*'], dest: 'build/', flatten: false, filter: 'isFile' },
-          { expand: true, src: ['tmp/result/assets/styles/*.css'], dest: 'build/', flatten: true, filter: 'isFile' }
+          { expand: true, src: ['media/**/*'], dest: 'build/', flatten: false, filter: 'isFile' }
         ]
       }
-    },
-    clean: {
-      dev: ['tmp']
     },
     jshint: {
       options: {
@@ -113,7 +109,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-gh-pages');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // get a formatted commit message to review changes from the commit log
   // github will turn some of these into clickable links
@@ -150,7 +145,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', 'Building blog with Metalsmith', [
-    'clean',
+    'jshint',
     'shell:dist',
     'sass:dist',
     'copy'
@@ -161,5 +156,5 @@ module.exports = function(grunt) {
     'check-deploy'
   ]);
 
-  grunt.registerTask('server', ['clean', 'shell:dev', 'sass:dev', 'copy', 'jshint', 'hapiserver', 'watch']);
+  grunt.registerTask('server', ['jshint', 'shell:dev', 'sass:dev', 'copy', 'hapiserver', 'watch']);
 };
