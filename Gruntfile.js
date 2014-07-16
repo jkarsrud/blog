@@ -97,15 +97,15 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: ['styles/**/*.scss'],
-        tasks: ['sass', 'copy']
+        tasks: ['sass']
       },
       templates: {
         files: ['templates/**/*.hbs'],
-        tasks: ['shell:dev', 'copy']
+        tasks: ['shell:dev', 'copy', 'sass']
       },
       content: {
         files: ['src/**/*.md'],
-        tasks: ['shell:dev', 'copy']
+        tasks: ['shell:dev', 'copy', 'sass']
       },
       js: {
         files: ['plugins/*.js', 'build.js', 'Gruntfile.js'],
