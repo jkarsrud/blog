@@ -1,6 +1,7 @@
 ---
 title: "Blogging with Metalsmith"
 date: 2014-06-22
+author: "Jesper Haug Karsrud"
 ---
 
 This is a blog post!

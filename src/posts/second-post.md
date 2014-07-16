@@ -1,6 +1,8 @@
 ---
 title: "The second post is here"
 date: 2014-07-01
+author: "Jesper Haug Karsrud"
+
 image: /media/images/placeholder.jpg
 ---
 

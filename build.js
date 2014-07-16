@@ -54,7 +54,7 @@ Metalsmith(__dirname)
   strip: true
 }))
 .use(permalinks({
-  pattern: ':collection/:title/'
+  pattern: ':date/:title/'
 }))
 .use(templates('handlebars'))
 .build(function(err) {
