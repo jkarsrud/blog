@@ -12,7 +12,7 @@ var collections = require('metalsmith-collections');
 var drafts = require('metalsmith-drafts');
 var filemetadata = require('metalsmith-filemetadata');
 
-var strippedExceprts = require('./excerpts');
+var strippedExceprts = require('./plugins/excerpts');
 
 Handlebars.registerPartial('header', fs.readFileSync(__dirname + '/templates/partials/header.hbs').toString());
 Handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/templates/partials/footer.hbs').toString());
