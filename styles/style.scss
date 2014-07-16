@@ -12,25 +12,29 @@ html, body {
   background: none;
 }
 
-#secondary nav {
-  display: none;
-}
-
 #secondary {
   color: #ddd;
   padding: 0;
   background: #222;
+
+  nav {
+    display: none;
+    @media (min-width: 1200px) {
+      display: block;
+    }
+  }
+
+  header {
+    border-bottom: 1px solid #000;
+    text-align: center;
+  }
+
+  header ~ * {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #333;
+  }
 }
 
-#secondary header {
-  border-bottom: 1px solid #000;
-  text-align: center;
-}
-
-#secondary header ~ * {
-  border-bottom: 1px solid #000;
-  border-top: 1px solid #333;
-}
 
 .masthead .site-title {
   margin: 0;
