@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var Metalsmith = require('metalsmith');
+var metalsmith = require('metalsmith');
 var Handlebars = require('handlebars');
 var moment = require('handlebars-helper-moment')().moment;
 
@@ -23,7 +23,7 @@ Handlebars.registerHelper('moment', moment);
 var env = process.argv[2] || 'development';
 var configPath = 'config/' + env + '.json';
 
-Metalsmith(__dirname)
+metalsmith(__dirname)
 .use(metadata({
   env: configPath,
   site: 'config/site.json'
