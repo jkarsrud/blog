@@ -1,0 +1,17 @@
+.secondary {
+  color: #ddd;
+  padding: 0;
+  background: #222;
+
+  nav {
+    display: none;
+    @media (min-width: 1200px) {
+      display: block;
+    }
+  }
+
+  header {
+    border-bottom: 1px solid #000;
+    text-align: center;
+  }
+}

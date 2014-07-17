@@ -1,40 +1,15 @@
 @import 'github';
 
+@import 'colors';
+
+@import 'components/header';
+@import 'components/page';
+@import 'components/secondary';
+
 html, body {
   background: url(/media/bokeh-bg.png) no-repeat center center;
   background-size: cover;
 }
-
-#page {
-  position: relative;
-  margin: 0 auto;
-  max-width: 1170px;
-  background: none;
-}
-
-#secondary {
-  color: #ddd;
-  padding: 0;
-  background: #222;
-
-  nav {
-    display: none;
-    @media (min-width: 1200px) {
-      display: block;
-    }
-  }
-
-  header {
-    border-bottom: 1px solid #000;
-    text-align: center;
-  }
-
-  header ~ * {
-    border-bottom: 1px solid #000;
-    border-top: 1px solid #333;
-  }
-}
-
 
 .masthead .site-title {
   margin: 0;
@@ -52,19 +27,7 @@ html, body {
 }
 
 @media (min-width: 1200px) {
-  #page {
-    background: #fff;
-  }
-  #page:before {
-    content: "";
-    background: #222;
-    display: block;
-    height: 100%;
-    position: absolute;
-    width: 25%;
-  }
-
-  #secondary nav {
+  .secondary nav {
     display: block;
   }
 }
