@@ -63,11 +63,9 @@ module.exports = function(grunt) {
       tooling: {
         src: [
           'Gruntfile.js',
-          'tasks/**/*.js'
+          'tasks/**/*.js',
+          'build.js'
         ]
-      },
-      build: {
-        src: ['build.js']
       }
     },
     'gh-pages': {
