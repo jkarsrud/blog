@@ -1,6 +1,10 @@
 {
   "name": "blog",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jkarsrud/blog.git"
+  },
   "devDependencies": {
     "cheerio": "^0.17.0",
     "debug": "^1.0.2",
