@@ -1,17 +1,37 @@
 .secondary {
-  color: #ddd;
+  color: $secondary_text;
   padding: 0;
-  background: #222;
-
-  nav {
-    display: none;
-    @media (min-width: 1200px) {
-      display: block;
-    }
-  }
+  background: $secondary;
 
   header {
     border-bottom: 1px solid #000;
     text-align: center;
+  }
+
+  nav {
+    display: none;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid #777;
+      border-bottom: 1px solid #777;
+      font-size: 12px;
+      text-transform: uppercase;
+      li {
+        border-bottom: 1px solid #777;
+        a {
+          color: $secondary_text;
+          display: inline-block;
+          padding: 10px 25px;
+        }
+      }
+    }
+
+    @media (min-width: 1200px) {
+      display: block;
+    }
+
   }
 }
