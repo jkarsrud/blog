@@ -155,7 +155,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', 'Building blog with Metalsmith', [
-    'jshint',
     'shell:dist',
     'sass:dist',
     'copy'
